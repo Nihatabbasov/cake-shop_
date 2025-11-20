@@ -24,10 +24,11 @@ class Cakes:
 
 
 class Customer:
-    def __init__(self, name):
+    def __init__(self, name, balance):
         self.name = name
+        self.balance = balance
         self.customer_basket = []
-    def buy_cake(self, cake):
+    def buy_cake(self, cake: Cakes):
         """
         this function give information about cakes in stocks.
         if cake in stocks lesser than 1 you cannot buy otherwise
@@ -49,13 +50,23 @@ class Customer:
         """
         total = sum(x.price for x in self.customer_basket)
         return total
+    def check_balance(self):
+        """
+        This function checking the customers balance
+        """
+        total_price = self.calculate_price()
+        if customer.balance < total_price:
+            print("Insufficient balance!")
+        else:
+            print("Balance is sufficient.")
+
 
 shop = Shop("Azza", "Baku 12A street")
-customer = Customer("john")
+customer = Customer("john", 30)
 cake_bluberry = Cakes("Bluberry", "[fresh Blueberry, Vanilla]", 15.99, 18)
 cake_troufel = Cakes("Troufel", "[dark schocolate, vanilla]", 19.99, 3)
 customer.buy_cake(cake_troufel)
 customer.buy_cake(cake_troufel)
 customer.buy_cake(cake_troufel)
-customer.buy_cake(cake_troufel)
 print(customer.calculate_price())
+customer.check_balance()
